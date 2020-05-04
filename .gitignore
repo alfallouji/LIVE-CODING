@@ -1,2 +1,2 @@
-node_modules/
-package-json.lock
+guestbook-app/node_modules/
+guestbook-app/package-json.lock
