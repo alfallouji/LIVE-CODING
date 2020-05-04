@@ -1,0 +1,6 @@
+CREATE TABLE `demo`.`guestbook` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(32) NOT NULL,
+  `message` TEXT NULL,
+  `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`));
