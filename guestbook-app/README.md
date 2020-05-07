@@ -73,5 +73,5 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
 
  * Run
 
-        $ bin/www
-        # Then open URL http://localhost:3000
+        $ PORT=8080 bin/www
+        # Then open URL http://localhost:8080
