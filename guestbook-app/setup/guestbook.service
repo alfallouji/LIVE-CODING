@@ -1,5 +1,6 @@
 [Unit]
 Description=GuestBook Backend
+After=mariadb.service
 
 [Service]
 Environment=PORT=8080
