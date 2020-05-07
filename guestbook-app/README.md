@@ -78,4 +78,4 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
 
  * Run it via systemd
  
-         $ sudo systemctl restart guestbook.service       
+         $ sudo systemctl start guestbook.service       
