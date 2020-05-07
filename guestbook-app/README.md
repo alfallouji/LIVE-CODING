@@ -60,7 +60,7 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
         $ sudo systemctl daemon-reload
         $ sudo systemctl restart guestbook.service       
 
-## Run
+## Run 
  * Build
 
         $ npm install
@@ -70,7 +70,11 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
         $ cp conf/guestbook.json.default conf/guestbook.json
         # Edit conf/guestbook.json, set the database connection
 
- * Run
+ * Run it manually
 
         $ PORT=8080 bin/www
         # Then open URL http://localhost:8080
+
+ * Run it via systemd
+ 
+         $ sudo systemctl restart guestbook.service       
