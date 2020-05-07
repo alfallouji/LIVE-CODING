@@ -28,7 +28,8 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
         $ mysql -h localhost -u root -p demo < database/schema_init.sql
 
 ## Setup Nginx as reverse proxy
-  * Deploy nginx using apt-get 
+  * Deploy nginx using apt-get
+  
         $ sudo apt-get -y install nginx
         
   * Configure nginx.conf (update /etc/nginx/nginx.conf)
@@ -38,21 +39,25 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
         }
         
   * Add nginx to systemctl 
+  
         $ sudo systemctl enable nginx
         $ sudo systemctl restart nginx  
   
 ## Install guestbook as a systemd service
-    * Set execution permission
+ * Set execution permission
+ 
         $ cd guestbook-app/setup
         $ chmod +x start.sh
 
-    * Add service to systemd
+ * Add service to systemd
+ 
         $ sudo cp guestbook.service /etc/systemd/system/
         $ sudo systemctl daemon-reload
         $ sudo systemctl enable guestbook.service
         $ sudo systemctl start guestbook
 
-    * Reload deamon and start service
+ * Reload deamon and start service
+ 
         $ sudo systemctl daemon-reload
         $ sudo systemctl restart guestbook.service       
 
