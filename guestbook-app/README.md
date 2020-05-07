@@ -49,7 +49,7 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
         $ cd guestbook-app/setup
         $ chmod +x start.sh
 
- * Add service to systemd
+ * Add service to systemd (depending on where you have installed the app, you may have to edit paths of the guestbook.service before)
  
         $ sudo cp guestbook.service /etc/systemd/system/
         $ sudo systemctl daemon-reload
