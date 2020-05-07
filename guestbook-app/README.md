@@ -60,6 +60,10 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
         $ sudo systemctl daemon-reload
         $ sudo systemctl restart guestbook.service       
 
+ * Read logs from the service
+
+        $ journalctl -u guestbook
+
 ## Run 
  * Build
 
