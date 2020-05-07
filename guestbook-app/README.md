@@ -66,7 +66,7 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
 
         $ npm install
 
- * Configure
+ * Configure (update db settings if needed)
 
         $ cp conf/guestbook.json.default conf/guestbook.json
         # Edit conf/guestbook.json, set the database connection
