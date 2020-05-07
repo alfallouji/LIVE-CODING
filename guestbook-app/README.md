@@ -45,9 +45,8 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
   
 ## Install guestbook as a systemd service
  * Set execution permission
- 
-        $ cd guestbook-app/setup
-        $ chmod +x start.sh
+         
+        $ chmod +x setup/start.sh
 
  * Add service to systemd (depending on where you have installed the app, you may have to edit paths of the guestbook.service before)
  
