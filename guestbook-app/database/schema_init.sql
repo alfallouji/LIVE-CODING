@@ -1,4 +1,4 @@
-CREATE TABLE `demo`.`guestbook` (
+CREATE TABLE guestbook (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(32) NOT NULL,
   `message` TEXT NULL,
