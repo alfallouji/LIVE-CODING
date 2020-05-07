@@ -73,7 +73,8 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
  * Run it manually
 
         $ PORT=8080 bin/www
-        # Then open URL http://localhost:8080
+        # Then open URL http://Replace_By_The_EC2_Public_IP:8080 (to test the nodejs app directly)
+        # or open URL http://Replace_By_The_EC2_Public_IP/ (to test it via nginx)
 
  * Run it via systemd
  
