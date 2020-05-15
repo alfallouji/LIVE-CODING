@@ -5,3 +5,4 @@ guestbook-cdk/node_modules/
 guestbook-cdkpackage-lock.json
 guestbook-cdk/conf/config.json
 guestbook-cdk/cdk.out/
+guestbook-cdk/cdk.context.json
