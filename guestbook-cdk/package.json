@@ -1,0 +1,21 @@
+{
+  "name": "guestbook-cdk",
+  "version": "0.1.0",
+  "bin": {
+    "guestbook-cdk": "bin/guestbook-cdk.js"
+  },
+  "scripts": {
+    "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
+    "cdk": "cdk",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "1.34.1",
+    "aws-cdk": "1.34.1",
+    "jest": "^25.3.0"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-ec2": "^1.38.0",
+    "@aws-cdk/core": "1.34.1"
+  }
+}

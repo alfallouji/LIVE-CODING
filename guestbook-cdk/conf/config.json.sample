@@ -1,0 +1,9 @@
+{
+    "env": {
+        "account": "1234567890",
+        "region": "eu-central-2"
+    },
+    "vpc": {
+        "name": "guestbook-vpc"
+    }
+}
