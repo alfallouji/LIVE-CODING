@@ -5,14 +5,15 @@ const { GuestbookVpcStack } = require('../lib/guestbook-vpc-stack');
 
 const app = new cdk.App();
 
+var props = {};
 const env_name = app.node.tryGetContext('env');
 switch(env_name) { 
     case 'prod':
-        var props = require('../conf/config.prod.json');
+        props = require('../conf/config.prod.json');
     break;
     
     case 'dev':
-        var props = require('../conf/config.dev.json');
+        props = require('../conf/config.dev.json');
     break;
     
     default:
