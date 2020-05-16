@@ -1,3 +1,6 @@
+
+<p align="center"><img src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/cestlavie.jpg" /></p>
+
 # LIVE CODING
 Github Repository pour les scéances de live coding par Seb & Bashar
 
