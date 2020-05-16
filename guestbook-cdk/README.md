@@ -13,4 +13,4 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app. The build ste
 
 ## Configuration
 
-Copy file conf/config.json.sample to conf/config.json and customize it.
+Copy file conf/config.json.sample to `conf/config.prod.json` (for production env) and `conf/config.dev.json` (for dev env) and customize them if needed.
