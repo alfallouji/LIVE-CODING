@@ -1,9 +1,12 @@
 {
+    "description": "Configuration file used for the dev and prod environments. Create a copy named config.dev.json and config.prod.json",
     "env": {
         "account": "1234567890",
-        "region": "eu-central-2"
+        "region": "eu-central-1"
     },
     "vpc": {
-        "name": "guestbook-vpc"
+        "name": "guestbook-{dev|prod}-vpc",
+        "maxAzs": 1,
+        "natGateways": 1
     }
 }

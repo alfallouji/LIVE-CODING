@@ -13,26 +13,26 @@ class GuestbookVpcStack extends cdk.Stack {
 
     // Create a VPC
     const vpc = new ec2.Vpc(this, props.vpc.name, {
-      maxAzs: 3,
-     	subnetConfiguration: [
-           {
-             cidrMask: 24,
-             name: 'public',
-             subnetType: ec2.SubnetType.PUBLIC,
-           },
-           {
-             cidrMask: 24,
-             name: 'private',
-             subnetType: ec2.SubnetType.PRIVATE,
-           },
-           {
-             cidrMask: 24,
-             name: 'isolated',
-             subnetType: ec2.SubnetType.ISOLATED,
-           }
+        maxAzs: props.vpc.maxAzs,
+        natGateways: props.vpc.natGateways,
+        subnetConfiguration: [
+            {
+                cidrMask: 24,
+                name: 'public',
+                subnetType: ec2.SubnetType.PUBLIC,
+            },
+            {
+                cidrMask: 24,
+                name: 'private',
+                subnetType: ec2.SubnetType.PRIVATE,
+            },
+            {
+                cidrMask: 24,
+                name: 'isolated',
+                subnetType: ec2.SubnetType.ISOLATED,
+            }
         ]
-      }
-    );
+    });
   }
 }
 
