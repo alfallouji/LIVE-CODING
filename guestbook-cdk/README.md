@@ -14,3 +14,18 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app. The build ste
 ## Configuration
 
 Copy file conf/config.json.sample to `conf/config.prod.json` (for production env) and `conf/config.dev.json` (for dev env) and customize them if needed.
+
+## Targeting dev or prod environment
+
+The same code is used to build dev and production environment. You can pass the `env` parameter as a context to select the desired environment.
+
+### Production environment
+`cdk deploy -c env=prod`
+
+`cdk synth -c env=prod`
+
+### Development environment
+
+`cdk deploy -c env=dev`
+
+`cdk synth -c env=dev`
