@@ -7,8 +7,8 @@ https://www.twitch.tv/sebaws
 
 ## Code 
 
-L'application guestbook (nodejs) est disponible dans le répertoire `guestbook-app/`
+L'application guestbook (nodejs) est disponible dans le répertoire [guestbook-app/](https://github.com/alfallouji/LIVE-CODING/tree/master/guestook-app)
 
-Le code de déploiement des resources (via CDK) est disponible dans le répertoire `guestbook-cdk/`
+Le code de déploiement des resources (via CDK) est disponible dans le répertoire [guestbook-cdk/](https://github.com/alfallouji/LIVE-CODING/tree/master/guestbook-cdk)
 
-Les descriptions des différents épisodes sont disponibles dans le répertoire `episodes/`
+Les descriptions des différents épisodes sont disponibles dans le répertoire [episodes/](https://github.com/alfallouji/LIVE-CODING/tree/master/episodes)
