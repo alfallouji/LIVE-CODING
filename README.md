@@ -34,4 +34,5 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 ### Prochain épisode : S01E03 
 Jeudi 28 Juin 2020 - 18:00 GMT+1
+
 Live stream sur : https://www.twitch.tv/sebaws
