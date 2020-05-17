@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/cestlavie.jpg" /></p>
+
 # Episodes 
 
 ## S01E01 - Le début d'une aventure
