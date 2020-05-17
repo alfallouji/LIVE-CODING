@@ -28,7 +28,7 @@ Les descriptions des différents épisodes sont disponibles dans le répertoire 
   <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e01-d.png" />
 </p>
 
-***Chaque histoire a un début, au menu pour cet épisode : un message myterieux, un nouveau workload à déployer et peu de temps.***
+***Chaque histoire a un début, au menu pour cet épisode : un message mystérieux, un nouveau workload à déployer et peu de temps.***
 
 Jeudi 7 Juin 2020 - 18:00 GMT+1 
 
