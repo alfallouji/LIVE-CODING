@@ -20,7 +20,7 @@ Les descriptions des différents épisodes sont disponibles dans le répertoire 
 ## Episodes 
 
 ### S01E01 - Le début d'une aventure
-<p align="center">
+<p align="center" style="background-color:black; padding: 10px;">
   <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e01-a.png" />
   <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e01-b.png" />
   <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e01-c.png" />
