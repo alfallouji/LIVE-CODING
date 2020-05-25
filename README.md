@@ -58,7 +58,7 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 
 
-### Prochain épisode : S01E03 
+### Prochain épisode : S01E03 - Diviser pour mieux régner
 Jeudi 28 Juin 2020 - 18:00 GMT+1
 
 https://www.twitch.tv/sebaws
