@@ -30,7 +30,7 @@ Les descriptions des différents épisodes sont disponibles dans le répertoire 
 
 ***Chaque histoire a un début, au menu pour cet épisode : un message mystérieux, un nouveau workload à déployer et peu de temps.***
 
-Jeudi 7 Juin 2020 - 18:00 GMT+1 
+Jeudi 7 Mai 2020 - 18:00 GMT+1 
 
 Durée: 71 minutes
 
@@ -48,7 +48,7 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 ***"La voix" est contente de notre prestation précédente, mais nous invite à penser au futur et revoir les fondations au niveau réseau. Il est temps de concevoir une topologie réseau et d'automatiser le déploiement du nouveau VPC.***
 
-Jeudi 14 Juin 2020 - 18:00 GMT+1
+Jeudi 14 Mai 2020 - 18:00 GMT+1
 
 Durée: 68 minutes
 
@@ -57,15 +57,27 @@ Video: [Twitch](https://www.twitch.tv/videos/620885990) - [Youtube](https://www.
 Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E02.md
 
 
+### S01E03 - Diviser pour mieux régner
 
-### Live : S01E03 - Diviser pour mieux régner
-
+<p align="center">
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e03-a.png" />
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e03-b.png" />
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e03-c.png" />
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e03-d.png" /></p>
+  
 ***"La voix" nous demande de casser le monolithe, la première étape consiste à sortir la base de données.***
 
-Jeudi 28 Juin 2020 - 18:00 GMT+1
+Jeudi 28 Mai 2020 - 18:00 GMT+1
 
 https://www.twitch.tv/sebaws
 
 Durée : 63 minutes
 
 Video : [Twitch](https://www.twitch.tv/videos/634488159)
+
+
+### Prochain épisode Live : S01E04 - RDS fait connaissance avec CDK
+
+Jeudi 4 Juin 2020 - 18:00 GMT+1
+
+https://www.twitch.tv/sebaws
