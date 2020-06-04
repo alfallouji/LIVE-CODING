@@ -75,6 +75,8 @@ Durée : 63 minutes
 
 Video : [Twitch](https://www.twitch.tv/videos/634488159)
 
+Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E03.md
+
 
 ### Prochain épisode Live : S01E04 - RDS fait connaissance avec CDK
 
