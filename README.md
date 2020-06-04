@@ -59,7 +59,13 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 
 ### Live : S01E03 - Diviser pour mieux régner
+
+***"La voix" nous demande de casser le monolithe, la première étape consiste à sortir la base de données.***
+
 Jeudi 28 Juin 2020 - 18:00 GMT+1
 
 https://www.twitch.tv/sebaws
 
+Durée : 63 minutes
+
+Video : [Twitch](https://www.twitch.tv/videos/634488159)
