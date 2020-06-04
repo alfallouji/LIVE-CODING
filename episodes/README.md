@@ -38,7 +38,7 @@ Video: [Twitch](https://www.twitch.tv/videos/620885990) - [Youtube](https://www.
 
 Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E02.md
 
-### S01E03 - Diviser pour mieux régner
+## S01E03 - Diviser pour mieux régner
 
 <p align="center">
   <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e03-a.png" />
@@ -59,7 +59,7 @@ Video : [Twitch](https://www.twitch.tv/videos/634488159)
 Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E03.md
 
 
-### Prochain épisode Live : S01E04 - RDS fait connaissance avec CDK
+## Prochain épisode Live : S01E04 - RDS fait connaissance avec CDK
 
 Jeudi 4 Juin 2020 - 18:00 GMT+1
 
