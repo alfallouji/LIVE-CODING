@@ -10,9 +10,10 @@ class GuestbookVpcStack extends cdk.Stack {
    */
   constructor(scope, id, props) {
     super(scope, id, props);
+    this.vpc = null;
 
     // Create a VPC
-    const vpc = new ec2.Vpc(this, props.vpc.name, {
+    const vpc = new ec2.Vpc(this, "vpc", {
         maxAzs: props.vpc.maxAzs,
         natGateways: props.vpc.natGateways,
         subnetConfiguration: [
@@ -33,7 +34,13 @@ class GuestbookVpcStack extends cdk.Stack {
             }
         ]
     });
+
+    this.vpc = vpc;
   }
+  
+  getVPC() {
+      return this.vpc;
+  }  
 }
 
 module.exports = { GuestbookVpcStack }
