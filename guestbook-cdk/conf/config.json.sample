@@ -6,7 +6,27 @@
     },
     "vpc": {
         "name": "guestbook-{dev|prod}-vpc",
-        "maxAzs": 1,
+        "maxAzs": 3,
         "natGateways": 1
-    }
+    },
+    "rds": {
+        "databaseUsername": "dbuser",
+        "engine": "aurora",
+        "serviceName": "guestbook",
+        "engineMode": "serverless",
+        "engineVersion": "5.6.10a",
+        "databaseName": "guestbook"
+    }, 
+    "secretManager": {
+        "engine": "mysql"
+    },
+    "instance": {
+        "machineImage": "image-guestbook-app",
+        "name": "guestbook-app"
+    },
+    "iam": {
+        "ssmRoleName": "ssm-role-ec2",
+        "ssmExistingRoleArn": "arn:aws:iam::1234567890:role/ssm-role-ec2",
+        "ssmManagedPolicyArn": "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
+    }    
 }
