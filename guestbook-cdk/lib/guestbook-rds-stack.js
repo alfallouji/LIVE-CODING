@@ -37,14 +37,12 @@ class GuestbookRdsStack extends cdk.Stack {
         minCapacity: 2,
         secondsUntilAutoPause: isDev ? 3600 : 10800,
       },
-      dbSubnetGroupName: new rds.CfnDBSubnetGroup(
-          this, 
-          `subnetgroup-${props.rds.databaseName}-${props.environmentType}`,
-          {
-              dbSubnetGroupDescription: `Subnet group for ${props.rds.serviceName}-${props.environmentType}`,
-              subnetIds: vpc.selectSubnets({subnetType: ec2.SubnetType.ISOLATED}).subnetIds
-          }
-      ).dbSubnetGroupName,
+      vpc: vpc,
+      vpcPlacement: {subnetType: ec2.SubnetType.ISOLATED},
+      dbSubnetGroupName: new rds.CfnDBSubnetGroup(this, `subnetgroup-${props.rds.databaseName}-${props.environmentType}`, {
+          dbSubnetGroupDescription: `Subnet group for ${props.rds.serviceName}-${props.environmentType}`,
+          subnetIds: vpc.selectSubnets(vpc.subnets).subnetIds
+      }).ref,      
       deletionProtection: isDev ? false : true
     };
 
