@@ -24,6 +24,10 @@ switch(env_name) {
     break;
 }
 
+// Inject AWS SDK into properties
+props.AWS = require('aws-sdk');
+props.AWS.config.update({region: props.env.region});
+
 var prefix = env_name.charAt(0).toLowerCase() + env_name.slice(1);
 
 props.stackName = 'guestbook-' + prefix + '-vpc';
