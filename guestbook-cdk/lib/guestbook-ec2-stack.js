@@ -13,12 +13,16 @@ class GuestbookEc2Stack extends cdk.Stack {
     super(scope, id, props);
     
     var vpc = props.vpc.current;
-
+  
     // Security group
     let clientSecurityGroup = new ec2.SecurityGroup(this, 'guestbook-app-sg',{
       vpc: vpc,
       description: "Security Group Guestbook App",
     });
+    
+    // Tag the security group so it can be looked up easily
+    cdk.Tag.add(clientSecurityGroup, 'cdk-name-lookup', 'guestbook-app-sg');
+
     const trustedRemoteNetwork = ec2.Peer.anyIpv4();
     const httpPort = ec2.Port.tcp(80);
     clientSecurityGroup.addIngressRule(

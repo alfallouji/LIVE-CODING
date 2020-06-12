@@ -13,7 +13,10 @@ class GuestbookRdsStack extends cdk.Stack {
    */
   constructor(scope, id, props) {
     super(scope, id, props);
-    
+    this.executeStack(scope, id, props);
+  }
+  
+  async executeStack(scope, id, props) {
     this.rdsCluster = null;
     var vpc = props.vpc.current;
 
@@ -22,12 +25,43 @@ class GuestbookRdsStack extends cdk.Stack {
     
     // Generate an initial password for the master account
     const initialMasterPassword = uuid.v4();
+    
+    // Async function helper to get a security group by filters 
+    async function getSecurityGroupByFilters(filters) {
+      var sdkEc2 = new props.AWS.EC2({apiVersion: '2016-11-15'});
+      var params = {
+        DryRun: false,
+        Filters: filters
+      };
+      
+      let promise = new Promise((resolve, reject) => {
+        sdkEc2.describeSecurityGroups(params, function(err, data) {
+          if (err) {
+            // an error occurred
+            console.log(err, err.stack); 
+            reject();
+          } else {
+            // successful response
+            resolve(data['SecurityGroups'][0].GroupId);
+          }
+        });
+      });              
+
+      return await promise;
+    }
+    
+    var filters = [{
+      Name: 'tag:cdk-name-lookup',
+      Values: [
+        'guestbook-app-sg'
+    ]}];
+    var securityGroupId = await getSecurityGroupByFilters(filters);
 
     // Load the existing app security group
     const appSecurityGroup = ec2.SecurityGroup.fromSecurityGroupId(
       this, 
       'guestbook-app-sg', 
-      'sg-052f0ba6579c1c342' //@todo - figure out how to get the SG'id 
+      securityGroupId //@todo - figure out how to get the SG'id 
     );
 
     // Security group assigned to the database (opens DB port to the App security group)
