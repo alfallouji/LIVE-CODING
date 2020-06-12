@@ -2,6 +2,7 @@ const cdk = require('@aws-cdk/core');
 const ec2 = require('@aws-cdk/aws-ec2');
 const secretsManager = require('@aws-cdk/aws-secretsmanager');
 const rds = require('@aws-cdk/aws-rds');
+const uuid = require('uuid');
 
 class GuestbookRdsStack extends cdk.Stack {
   /**
@@ -19,6 +20,28 @@ class GuestbookRdsStack extends cdk.Stack {
     // Deploy an rds cluster    
     const isDev = props.environmentType !== "production";
     
+    // Generate an initial password for the master account
+    const initialMasterPassword = uuid.v4();
+
+    // Load the existing app security group
+    const appSecurityGroup = ec2.SecurityGroup.fromSecurityGroupId(
+      this, 
+      'guestbook-app-sg', 
+      'sg-052f0ba6579c1c342'
+    );
+
+    // Security group assigned to the database (opens DB port to the App security group)
+    let dbSecurityGroup = new ec2.SecurityGroup(this, 'guestbook-db-sg',{
+      vpc: vpc,
+      description: "Security Group Guestbook database",
+    });
+    const dbPort = ec2.Port.tcp(3306);
+    dbSecurityGroup.addIngressRule(
+      appSecurityGroup,
+      dbPort,
+      'Allow inbound to database port to the app security group'
+    );
+    
     // Database config
     const dbConfig = {
       dbClusterIdentifier: `guestbook-${props.environmentType}`,
@@ -28,7 +51,7 @@ class GuestbookRdsStack extends cdk.Stack {
       enableHttpEndpoint: true,
       databaseName: 'main',
       masterUsername: props.rds.databaseUsername, 
-      masterUserPassword: 'chips123456!', 
+      masterUserPassword: initialMasterPassword, 
       backupRetentionPeriod: isDev ? 1 : 30,
       finalSnapshotIdentifier: `main`,
       scalingConfiguration: {
@@ -43,13 +66,12 @@ class GuestbookRdsStack extends cdk.Stack {
           dbSubnetGroupDescription: `Subnet group for ${props.rds.serviceName}-${props.environmentType}`,
           subnetIds: vpc.selectSubnets(vpc.subnets).subnetIds
       }).ref,      
-      deletionProtection: isDev ? false : true
+      deletionProtection: isDev ? false : true,
+      VpcSecurityGroupIds: [dbSecurityGroup.securityGroupId]
     };
 
-    console.log(vpc.selectSubnets({subnetType: ec2.SubnetType.ISOLATED}).subnetIds);
-  
     const rdsCluster = new rds.CfnDBCluster(this, 'DBCluster', dbConfig);
-
+    
     // Create DB credentials for RDS master account
     const databaseCredentialsSecret = new secretsManager.Secret(this, 'DBCredentialsSecret', {
       secretName: `${props.rds.serviceName}-${props.environmentType}-master-credentials`,
@@ -57,10 +79,10 @@ class GuestbookRdsStack extends cdk.Stack {
         secretStringTemplate: JSON.stringify({
           username: props.rds.databaseUsername,
           engine: props.secretManager.engine,
-          password: 'chips123456!',
+          password: initialMasterPassword,
           host: rdsCluster.attrEndpointAddress
         }),
-        generateStringKey: '@todo'
+        generateStringKey: '_unused'
       }
     });
     
@@ -70,12 +92,13 @@ class GuestbookRdsStack extends cdk.Stack {
       securityGroups: rdsCluster.vpcSecurityGroupIds
     });
 
-    new secretsManager.SecretRotation(this, 'SecretRotation', {
+    new secretsManager.SecretRotation(this, 'SecretMasterRotation', {
       application: secretsManager.SecretRotationApplication.MYSQL_ROTATION_SINGLE_USER,
       secret: databaseCredentialsSecret,
       target,
       vpc: vpc,
-      subnetType: ec2.SubnetType.PRIVATE
+      subnetType: ec2.SubnetType.PRIVATE,
+      securityGroup: appSecurityGroup
     });
 
     this.rdsCluster = rdsCluster;

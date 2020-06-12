@@ -15,8 +15,6 @@ class GuestbookDBSecretStack extends cdk.Stack {
     
     var vpc = props.vpc.current;
     
-    console.log(props.secretManager.engine, props.rds.current.attrEndpointAddress);
-    
     // Create a rotating secret we can use to access the database.
     /**
     const databaseCredentialsSecret = new rds.DatabaseSecret(this, `guestbook-${props.environmentType}-dbuser-credentials`, {
