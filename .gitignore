@@ -2,7 +2,7 @@ guestbook-app/node_modules/
 guestbook-app/package-lock.json
 guestbook-app/conf/guestbook.json
 guestbook-cdk/node_modules/
-guestbook-cdkpackage-lock.json
+guestbook-cdk/package-lock.json
 guestbook-cdk/conf/config.dev.json
 guestbook-cdk/conf/config.prod.json
 guestbook-cdk/cdk.out/
