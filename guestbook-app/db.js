@@ -3,8 +3,9 @@ var mysql = require('mysql');
 
 // Load the AWS SDK
 var AWS = require('aws-sdk'),
+// @todo - move to config file region & secretName
 region = "eu-central-1",
-secretName = "guestbook-dev-credentials",
+secretName = "guestbook-dev-master-credentials",
 secret,
 decodedBinarySecret;
 
@@ -37,14 +38,13 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
     var secretJSON = JSON.parse(secret);
     console.log('getting secret', secretJSON);
     var db_config = {
-        host: (process.env.db_info && process.env.db_info.host) || cfg.get('db:host'),
-        user: secretJSON.username,
-        password: secretJSON.password,
-        database: (process.env.db_info && process.env.db_info.database) || cfg.get('db:database')
+        host: secretJSON.host || (process.env.db_info && process.env.db_info.host) || cfg.get('db:host'),
+        user: secretJSON.username || (process.env.db_info && process.env.db_info.username) || cfg.get('db:username'),
+        password: secretJSON.password || (process.env.db_info && process.env.db_info.password) || cfg.get('db:password'),
+        database: secretJSON.database || (process.env.db_info && process.env.db_info.database) || cfg.get('db:database')
     };
 
     function handleDisconnect() {
-        console.log(db_config);
         connection = mysql.createConnection(db_config);
 
         connection.connect(function(err) {

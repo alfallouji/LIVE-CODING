@@ -27,7 +27,7 @@ class GuestbookRdsStack extends cdk.Stack {
     const appSecurityGroup = ec2.SecurityGroup.fromSecurityGroupId(
       this, 
       'guestbook-app-sg', 
-      'sg-052f0ba6579c1c342'
+      'sg-052f0ba6579c1c342' //@todo - figure out how to get the SG'id 
     );
 
     // Security group assigned to the database (opens DB port to the App security group)
@@ -80,7 +80,8 @@ class GuestbookRdsStack extends cdk.Stack {
           username: props.rds.databaseUsername,
           engine: props.secretManager.engine,
           password: initialMasterPassword,
-          host: rdsCluster.attrEndpointAddress
+          host: rdsCluster.attrEndpointAddress,
+          database: props.rds.databaseName
         }),
         generateStringKey: '_unused'
       }
