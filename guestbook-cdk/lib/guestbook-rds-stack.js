@@ -57,11 +57,12 @@ class GuestbookRdsStack extends cdk.Stack {
     ]}];
     var securityGroupId = await getSecurityGroupByFilters(filters);
 
-    // Load the existing app security group
+    // Load the existing app security group (we are making an assumption that this sg exists already -> the ec2 stack was executed already)
+    // @todo : Handle the case that this assumption isnt true
     const appSecurityGroup = ec2.SecurityGroup.fromSecurityGroupId(
       this, 
       'guestbook-app-sg', 
-      securityGroupId //@todo - figure out how to get the SG'id 
+      securityGroupId 
     );
 
     // Security group assigned to the database (opens DB port to the App security group)
