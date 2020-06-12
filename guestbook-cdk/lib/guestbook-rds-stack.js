@@ -31,7 +31,7 @@ class GuestbookRdsStack extends cdk.Stack {
     );
 
     // Security group assigned to the database (opens DB port to the App security group)
-    let dbSecurityGroup = new ec2.SecurityGroup(this, 'guestbook-db-sg',{
+    const dbSecurityGroup = new ec2.SecurityGroup(this, 'guestbook-db-sg',{
       vpc: vpc,
       description: "Security Group Guestbook database",
     });
@@ -67,7 +67,7 @@ class GuestbookRdsStack extends cdk.Stack {
           subnetIds: vpc.selectSubnets(vpc.subnets).subnetIds
       }).ref,      
       deletionProtection: isDev ? false : true,
-      VpcSecurityGroupIds: [dbSecurityGroup.securityGroupId]
+      vpcSecurityGroupIds: [dbSecurityGroup.securityGroupId]
     };
 
     const rdsCluster = new rds.CfnDBCluster(this, 'DBCluster', dbConfig);
@@ -86,10 +86,13 @@ class GuestbookRdsStack extends cdk.Stack {
       }
     });
     
+    // console.log(rdsCluster);
+    
     // The target service or database
     const target = new ec2.Connections({
       defaultPort: ec2.Port.tcp(3306),
-      securityGroups: rdsCluster.vpcSecurityGroupIds
+      securityGroups: [dbSecurityGroup]
+      //rdsCluster.vpcSecurityGroupIds
     });
 
     new secretsManager.SecretRotation(this, 'SecretMasterRotation', {
@@ -100,7 +103,7 @@ class GuestbookRdsStack extends cdk.Stack {
       subnetType: ec2.SubnetType.PRIVATE,
       securityGroup: appSecurityGroup
     });
-
+  
     this.rdsCluster = rdsCluster;
   }
 

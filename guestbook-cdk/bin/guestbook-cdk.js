@@ -4,7 +4,6 @@ const ec2 = require('@aws-cdk/aws-ec2');
 
 const { GuestbookVpcStack } = require('../lib/guestbook-vpc-stack');
 const { GuestbookRdsStack } = require('../lib/guestbook-rds-stack');
-const { GuestbookDBSecretStack } = require('../lib/guestbook-db-secret-stack');
 const { GuestbookEc2Stack } = require('../lib/guestbook-ec2-stack');
 
 const app = new cdk.App();
@@ -51,6 +50,3 @@ if (rdsStack) {
 
 props.stackName = 'guestbook-' + prefix + '-ec2';
 var ec2Stack = new GuestbookEc2Stack(app, props.stackName, props);
-
-props.stackName = 'guestbook-' + prefix + '-db-secret';
-var secretStack = new GuestbookDBSecretStack(app, props.stackName, props);
