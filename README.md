@@ -78,8 +78,14 @@ Video : [Twitch](https://www.twitch.tv/videos/634488159)
 Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E03.md
 
 
-### Prochain épisode Live : S01E04 - RDS fait connaissance avec CDK
+### S01E04 - RDS fait connaissance avec CDK - Part 1
 
 Jeudi 4 Juin 2020 - 18:00 GMT+1
+
+Video : [Twitch](https://www.twitch.tv/videos/647898443)
+
+### S01E05 - RDS fait connaissance avec CDK - Part 2
+
+Jeudi 11 Juin 2020 - 18:00 GMT+1
 
 https://www.twitch.tv/sebaws
