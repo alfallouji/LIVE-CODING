@@ -127,13 +127,10 @@ class GuestbookRdsStack extends cdk.Stack {
       }
     });
     
-    // console.log(rdsCluster);
-    
     // The target service or database
     const target = new ec2.Connections({
       defaultPort: ec2.Port.tcp(3306),
       securityGroups: [dbSecurityGroup]
-      //rdsCluster.vpcSecurityGroupIds
     });
 
     new secretsManager.SecretRotation(this, 'SecretMasterRotation', {
