@@ -82,10 +82,14 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 Jeudi 4 Juin 2020 - 18:00 GMT+1
 
+Durée : 62 minutes
+
 Video : [Twitch](https://www.twitch.tv/videos/647898443)
 
 ### S01E05 - RDS fait connaissance avec CDK - Part 2
 
 Jeudi 11 Juin 2020 - 18:00 GMT+1
 
-https://www.twitch.tv/sebaws
+Durée : 60 minutes
+
+Video : [Twitch](https://www.twitch.tv/videos/641191131)
