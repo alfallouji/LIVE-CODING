@@ -1,6 +1,8 @@
 const cdk = require('@aws-cdk/core');
 const ec2 = require('@aws-cdk/aws-ec2');
 const iam = require('@aws-cdk/aws-iam');
+const autoscaling = require('@aws-cdk/aws-autoscaling');
+const elbv2 = require('@aws-cdk/aws-elasticloadbalancingv2');
 
 class GuestbookEc2Stack extends cdk.Stack {
   /**
@@ -14,14 +16,14 @@ class GuestbookEc2Stack extends cdk.Stack {
     
     var vpc = props.vpc.current;
   
-    // Security group
-    let clientSecurityGroup = new ec2.SecurityGroup(this, 'guestbook-app-sg',{
+    // Security group for the guestbook app
+    let clientSecurityGroup = new ec2.SecurityGroup(this, props.instance.securityGroupName, {
       vpc: vpc,
       description: "Security Group Guestbook App",
     });
     
     // Tag the security group so it can be looked up easily
-    cdk.Tag.add(clientSecurityGroup, 'cdk-name-lookup', 'guestbook-app-sg');
+    cdk.Tag.add(clientSecurityGroup, 'cdk-name-lookup', props.instance.securityGroupName);
 
     const trustedRemoteNetwork = ec2.Peer.anyIpv4();
     const httpPort = ec2.Port.tcp(80);
@@ -31,26 +33,65 @@ class GuestbookEc2Stack extends cdk.Stack {
       'Allow inbound HTTP port 80 from anywhere'
     );
 
-    // Use existing role (if it exists)
-    var role = iam.Role.fromRoleArn(this, props.iam.ssmRoleName, props.iam.ssmExistingRoleArn);
-
-    // Otherwise, create it
-    if (!role) {
-        role = new iam.Role(this, 'guestbook-ssm-role', {
-          'assumedBy': new iam.ServicePrincipal('ec2.amazonaws.com'),
-          'roleName': props.iam.ssmRoleName,
-          'description': 'ssm role used by ec2',
-          'managedPolicies': [props.iam.ssmManagedPolicyArn]
-        });
-    }
-
-    // Select AMI 
+    // role = iam.Role.fromRoleArn(this, props.instance.rolename, props.instance.existingRoleArn);
+    const role = new iam.Role(this, props.instance.rolename, {
+      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com')
+    });
+    
+    // allow instance to communicate with secrets manager & ssm (for debug purposes if needed)
+    role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName(props.instance.roleManagedPolicyName));
+    role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName(props.iam.ssmManagedPolicyName));
+    
+    /**
+    // If you want to select a specific AMI 
     const machineImage = ec2.MachineImage.lookup({
       name: props.instance.machineImage,
     });
-
+    */
+    
+    // Use latest amazon linux2 AMI
+    var machineImage = new ec2.AmazonLinuxImage({generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2});
+    
     var subnets = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC});
+    var userdata = ec2.UserData.forLinux();
+    userdata.addCommands(
+      'sudo curl https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/guestbook-app/setup/userdata.sh > /tmp/userdata.sh', 
+      'sudo sh /tmp/userdata.sh'
+    );
+    
+    const lb = new elbv2.ApplicationLoadBalancer(this, 'loadbalancer', {
+      vpc,
+      internetFacing: true,
+      healthCheck: {
+        port: 8080
+      }
+    });  
+    
+    const listener = lb.addListener('listener', { 
+      port: 80,
+      open:true
+    });
+    
+    listener.connections.allowDefaultPortFromAnyIpv4('Open to the world');
+    
+    const asg = new autoscaling.AutoScalingGroup(this, 'ASG', {
+      vpc: vpc,
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      vpcSubnets: subnets,
+      securityGroup: clientSecurityGroup,
+      userData: userdata,
+      instanceName: props.instance.name + '-' + props.environmentType,
+      machineImage: new ec2.AmazonLinuxImage({generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2}),
+      role: role,
+    });
 
+    listener.addTargets('ApplicationFleet', {
+      port: 8080,
+      targets: [asg]
+    });
+    
+    /**
+    // Deploy a single instance
     var ec2Instance = new ec2.Instance(this, 'Instance', {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       vpc: vpc,
@@ -59,13 +100,15 @@ class GuestbookEc2Stack extends cdk.Stack {
       machineImage: machineImage,
       role: role,
       securityGroup: clientSecurityGroup,
+      userData: userdata
     });
 
-    // Create an EIP for each instance
+    // Create an EIP for the instance
     const ec2EIP = new ec2.CfnEIP(ec2Instance, 'guestbook-eip', {
       domain: 'vpc',
       instanceId: ec2Instance.instanceId,
     });
+    */
   }
 }
 

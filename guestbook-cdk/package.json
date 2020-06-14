@@ -15,7 +15,9 @@
     "jest": "^25.3.0"
   },
   "dependencies": {
+    "@aws-cdk/aws-autoscaling": "^1.45.0",
     "@aws-cdk/aws-ec2": "^1.38.0",
+    "@aws-cdk/aws-elasticloadbalancingv2": "^1.45.0",
     "@aws-cdk/aws-rds": "^1.44.0",
     "@aws-cdk/aws-secretsmanager": "^1.44.0",
     "@aws-cdk/core": "1.34.1",

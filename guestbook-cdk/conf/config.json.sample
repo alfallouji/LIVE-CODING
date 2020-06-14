@@ -21,12 +21,18 @@
         "engine": "mysql"
     },
     "instance": {
-        "machineImage": "image-guestbook-app",
-        "name": "guestbook-app"
+        "machineImage": "guestbook-prod-01",
+        "name": "guestbook-app",
+        "securityGroupName": "guestbook-app-sg",
+        "roleManagedPolicyArn": "arn:aws:iam::aws:policy/SecretsManagerReadWrite",
+        "roleManagedPolicyName": "SecretsManagerReadWrite",
+        "rolename": "guestbook-app-role",
+        "existingRoleArn": "arn:aws:iam::1234567890:role/guestbook-app-role"
     },
     "iam": {
         "ssmRoleName": "ssm-role-ec2",
         "ssmExistingRoleArn": "arn:aws:iam::1234567890:role/ssm-role-ec2",
-        "ssmManagedPolicyArn": "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
+        "ssmManagedPolicyArn": "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+        "ssmManagedPolicyName": "AmazonSSMManagedInstanceCore"
     }    
 }
