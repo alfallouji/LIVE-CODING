@@ -42,7 +42,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable guestbook.service
 sudo systemctl start guestbook
 
-sudo amazon-linux-extras install nginx1.12
+sudo amazon-linux-extras install nginx1.12 -y
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak ## backup
 sudo cp /opt/dev/LIVE-CODING/guestbook-app/setup/nginx.conf /etc/nginx/nginx.conf
 
