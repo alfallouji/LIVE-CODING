@@ -3,6 +3,7 @@ const ec2 = require('@aws-cdk/aws-ec2');
 const iam = require('@aws-cdk/aws-iam');
 const autoscaling = require('@aws-cdk/aws-autoscaling');
 const elbv2 = require('@aws-cdk/aws-elasticloadbalancingv2');
+const utils = require('../utils/lookup.js');
 
 class GuestbookEc2Stack extends cdk.Stack {
   /**
@@ -13,18 +14,23 @@ class GuestbookEc2Stack extends cdk.Stack {
    */
   constructor(scope, id, props) {
     super(scope, id, props);
-    
-    var vpc = props.vpc.current;
+    this.executeStack(scope, id, props);
+  }
   
-    // Security group for the guestbook app
-    let clientSecurityGroup = new ec2.SecurityGroup(this, props.instance.securityGroupName, {
-      vpc: vpc,
-      description: "Security Group Guestbook App",
-    });
+  /**
+   * Async function containing all the logic
+   * 
+   * @param {cdk.Construct} scope
+   * @param {string} id
+   * @param {cdk.StackProps=} props
+   */
+  async executeStack(scope, id, props) {    
+    var vpc = props.vpc.current;
     
-    // Tag the security group so it can be looked up easily
-    cdk.Tag.add(clientSecurityGroup, 'cdk-name-lookup', props.instance.securityGroupName);
-
+    // Load the existing app security group 
+    var lookup = new utils.Lookup(props);
+    var clientSecurityGroup = await lookup.getAppSecurityGroup(this);
+  
     const trustedRemoteNetwork = ec2.Peer.anyIpv4();
     const httpPort = ec2.Port.tcp(80);
     clientSecurityGroup.addIngressRule(
@@ -78,13 +84,14 @@ class GuestbookEc2Stack extends cdk.Stack {
       vpc: vpc,
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       vpcSubnets: subnets,
-      securityGroup: clientSecurityGroup,
       userData: userdata,
       instanceName: props.instance.name + '-' + props.environmentType,
-      machineImage: new ec2.AmazonLinuxImage({generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2}),
+      machineImage: machineImage,
       role: role,
     });
 
+    asg.addSecurityGroup(clientSecurityGroup);
+  
     listener.addTargets('ApplicationFleet', {
       port: 8080,
       targets: [asg]
