@@ -55,10 +55,7 @@ exports.main =  async function(event, context) {
             }
         }
         
-        console.log(secret);
-        // Your code goes here. 
         var mysql = require('mysql');
-        
         var con = mysql.createConnection({
           host: secret.host,
           user: secret.username,
