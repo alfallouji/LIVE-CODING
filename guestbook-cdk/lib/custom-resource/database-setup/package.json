@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.683.0",
+    "mysql": "^2.18.1"
+  }
+}

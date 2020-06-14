@@ -86,6 +86,7 @@ Durée : 62 minutes
 
 Video : [Twitch](https://www.twitch.tv/videos/647898443)
 
+
 ### S01E05 - RDS fait connaissance avec CDK - Part 2
 
 Jeudi 11 Juin 2020 - 18:00 GMT+1

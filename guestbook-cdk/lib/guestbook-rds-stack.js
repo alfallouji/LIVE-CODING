@@ -4,6 +4,9 @@ const secretsManager = require('@aws-cdk/aws-secretsmanager');
 const rds = require('@aws-cdk/aws-rds');
 const uuid = require('uuid');
 const utils = require('../utils/lookup.js');
+const cfn = require('@aws-cdk/aws-cloudformation');
+const lambda = require('@aws-cdk/aws-lambda');
+const iam = require('@aws-cdk/aws-iam');
 
 class GuestbookRdsStack extends cdk.Stack {
   /**
@@ -112,8 +115,33 @@ class GuestbookRdsStack extends cdk.Stack {
     
     
     // Call custom resource to create the db schema
-    // @todo ...
-  
+    const role = new iam.Role(this, props.lambda.rolename, {
+      assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com')
+    });
+    
+    // allow lambda  to communicate with secrets manager & ssm (for debug purposes if needed)
+    role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName(props.lambda.roleManagedPolicyName));
+      
+    var lambdaFunction = new lambda.SingletonFunction(this, 'guestbookLambda', {
+        uuid: 'lambda-database-setup-001',
+        code: lambda.Code.asset('lib/custom-resource/database-setup'),
+        handler: 'index.main',
+        timeout: cdk.Duration.seconds(300),
+        runtime: lambda.Runtime.NODEJS_12_X,
+        vpc: props.vpc.current,
+        securityGroup: appSecurityGroup,
+        role: role,
+        vpcSubnets: vpc.selectSubnets({subnetType: ec2.SubnetType.PRIVATE})
+    });
+    
+    /**
+    var customProvider = cfn.CustomResourceProvider.lambda(lambdaFunction);
+    const resource = new cfn.CustomResource(this, 'Resource', {
+      provider: customProvider,
+      properties: {}
+    });
+    */
+    
     this.rdsCluster = rdsCluster;
   }
 
