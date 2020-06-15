@@ -81,10 +81,11 @@ class GuestbookRdsStack extends cdk.Stack {
     };
 
     const rdsCluster = new rds.CfnDBCluster(this, 'DBCluster', dbConfig);
+    const secretName = `${props.rds.serviceName}-${props.environmentType}-master-credentials`;
     
     // Create DB credentials for RDS master account
     const databaseCredentialsSecret = new secretsManager.Secret(this, 'DBCredentialsSecret', {
-      secretName: `${props.rds.serviceName}-${props.environmentType}-master-credentials`,
+      secretName: secretName,
       generateSecretString: {
         secretStringTemplate: JSON.stringify({
           username: props.rds.databaseUsername,
@@ -133,7 +134,8 @@ class GuestbookRdsStack extends cdk.Stack {
         vpc: props.vpc.current,
         securityGroup: appSecurityGroup,
         role: role,
-        vpcSubnets: vpc.selectSubnets({subnetType: ec2.SubnetType.PRIVATE})
+        vpcSubnets: vpc.selectSubnets({subnetType: ec2.SubnetType.PRIVATE}),
+        environment: {'secretName': secretName}
     });
     
     // Create the custom resource with the Lambda

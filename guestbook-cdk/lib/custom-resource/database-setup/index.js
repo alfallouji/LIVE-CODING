@@ -6,17 +6,13 @@ exports.main = function(event, context, callback) {
     // Load the AWS SDK
     var AWS = require('aws-sdk');
     const region = process.env.AWS_REGION;
-    console.log('starting on ' + region);
-    
     var mysql = require('mysql');
     var cfnresponse = require('cfn-response');
-    
-    // @todo: move this as as env variable
-    var secretName = "guestbook-dev-master-credentials";
-    
     var secret = null;
     var decodedBinarySecret = null;
 
+    console.log('Starting Lambda using region: ' + region);
+    
     // Create a Secrets Manager client
     var client = new AWS.SecretsManager({
         region: region
@@ -26,7 +22,7 @@ exports.main = function(event, context, callback) {
     // See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
     // We rethrow the exception by default.
     
-    client.getSecretValue({SecretId: secretName}, function(err, data) {
+    client.getSecretValue({SecretId: process.env.secretName}, function(err, data) {
         if (err) {
             if (err.code === 'DecryptionFailureException')
                 // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
