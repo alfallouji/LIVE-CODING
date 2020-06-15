@@ -25,6 +25,15 @@ switch(env_name) {
     break;
 }
 
+// If provided in th command line, override region paramater
+const region = app.node.tryGetContext('region');
+if (region) {
+    props.env.region = region;    
+    console.log("Overriding region value: " + props.env.region);
+} else {
+    console.log("Using region value from config file: " + props.env.region);
+}
+
 // Inject AWS SDK into properties
 props.AWS = require('aws-sdk');
 props.AWS.config.update({region: props.env.region});
