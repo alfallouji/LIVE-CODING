@@ -66,8 +66,8 @@ class GuestbookEc2Stack extends cdk.Stack {
     userdata.addCommands(
       'sudo curl https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/guestbook-app/setup/userdata.sh > /tmp/userdata.sh', 
       'sudo sh /tmp/userdata.sh',
-      `sudo echo "GUESTBOOK_SECRET_NAME="${secretName}" >> /opt/guestbook.env`,
-      `sudo echo "GUESTBOOK_REGION="${props.env.region}" >> /opt/guestbook.env`
+      `sudo echo "GUESTBOOK_SECRET_NAME=${secretName}" >> /opt/guestbook.env`,
+      `sudo echo "GUESTBOOK_REGION=${props.env.region}" >> /opt/guestbook.env`
     );
     
     const lb = new elbv2.ApplicationLoadBalancer(this, 'loadbalancer', {
