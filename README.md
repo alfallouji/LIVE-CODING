@@ -100,6 +100,7 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 ### S01E05 - RDS fait connaissance avec CDK - Part 2
 
+***Suite et fin de l'épisode précédent***
 
 <p align="center">
   <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e05-a.png" />
