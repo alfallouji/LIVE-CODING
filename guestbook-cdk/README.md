@@ -20,15 +20,19 @@ Copy file conf/config.json.sample to `conf/config.prod.json` (for production env
 The same code is used to build dev and production environment. You can pass the `env` parameter as a context to select the desired environment.
 
 ### Production environment
-`cdk deploy -c env=prod`
+`cdk deploy {stackName} -c env=prod`
 
-`cdk synth -c env=prod`
+`cdk synth {stackName} -c env=prod`
 
 ### Development environment
 
-`cdk deploy -c env=dev`
+`cdk deploy {stackName} -c env=dev`
 
-`cdk synth -c env=dev`
+`cdk synth {stackName} -c env=dev`
+
+### To list stacks
+
+`cdk list -c env=dev|prod`
 
 
 ### How to deploy all the stacks into a new account
