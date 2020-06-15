@@ -87,7 +87,7 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
   <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e04-d.png" /></p>
   
   
-***"La voix aimerait que l'on automatise le déploiement de la base de données*"""
+***"La voix" aimerait que l'on automatise le déploiement de la base de données***
 
 Jeudi 4 Juin 2020 - 18:00 GMT+1
 
