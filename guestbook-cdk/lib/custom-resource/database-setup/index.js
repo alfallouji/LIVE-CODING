@@ -60,9 +60,7 @@ exports.main = function(event, context, callback) {
             }
         }
         
-        console.log('secret', secret);
         var secretJson = JSON.parse(secret);
-        
         var mysql = require('mysql');
         var con = mysql.createConnection({
           host: secretJson.host,
@@ -87,11 +85,11 @@ exports.main = function(event, context, callback) {
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, \
   PRIMARY KEY (`id`)); SHOW DATABASES;", function (err, result, fields) {
             if (err) {
-                console.log('Error - couldnt create schema');
+                console.log('Error - couldnt create schema', err);
                 cfnresponse.send(event, context, cfnresponse.FAILED, {"Data": "notOk"});
                 callback(err);
             }
-            console.log('ok', result);
+            console.log('success', result);
             con.end();
             cfnresponse.send(event, context, cfnresponse.SUCCESS, {"Data": "ok"});
             callback(null);
