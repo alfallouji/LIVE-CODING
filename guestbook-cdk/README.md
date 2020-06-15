@@ -29,3 +29,22 @@ The same code is used to build dev and production environment. You can pass the 
 `cdk deploy -c env=dev`
 
 `cdk synth -c env=dev`
+
+
+### How to deploy all the stacks into a new account
+
+#### Bootstrap using your account id, region and select adequate environment (dev or prod):
+`cdk bootstrap aws://1234567890/eu-west-1 -c env=dev|prod`
+
+#### Deploy the vpc
+`cdk deploy guestbook-dev|prod-vpc -c env=dev`
+
+#### Deploy common resources (e.g. IAM role)
+`cdk deploy guestbook-dev|prod-common -c env=dev`
+
+#### Deploy database
+`cdk deploy guestbook-dev|prod-rds -c env=dev`
+
+#### Deploy application
+cdk deploy guestbook-dev|prod-ec2 -c env=dev
+
