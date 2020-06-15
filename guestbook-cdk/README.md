@@ -1,4 +1,4 @@
-# Welcome to your CDK JavaScript project!
+# Guestbook CDK JavaScript project
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app. The build step is not required when using JavaScript.
 
