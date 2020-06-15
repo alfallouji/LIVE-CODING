@@ -55,14 +55,9 @@ class GuestbookEc2Stack extends cdk.Stack {
     });
     */
     
-    // Use latest amazon linux2 AMI
-    var machineImage = new ec2.AmazonLinuxImage({generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2});
-    
-    var subnets = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC});
-    var userdata = ec2.UserData.forLinux();
-    
+    // User data that will deploy the application on the instance
     const secretName = `${props.rds.serviceName}-${props.environmentType}-master-credentials`;
-
+    var userdata = ec2.UserData.forLinux();
     userdata.addCommands(
       'sudo curl https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/guestbook-app/setup/userdata.sh > /tmp/userdata.sh', 
       'sudo sh /tmp/userdata.sh',
@@ -70,6 +65,7 @@ class GuestbookEc2Stack extends cdk.Stack {
       `sudo echo "GUESTBOOK_REGION=${props.env.region}" >> /opt/guestbook.env`
     );
     
+    // Create load balancer mapped to 8080
     const lb = new elbv2.ApplicationLoadBalancer(this, 'loadbalancer', {
       vpc,
       internetFacing: true,
@@ -82,9 +78,13 @@ class GuestbookEc2Stack extends cdk.Stack {
       port: 80,
       open:true
     });
-    
     listener.connections.allowDefaultPortFromAnyIpv4('Open to the world');
     
+    // Use latest amazon linux2 AMI
+    var machineImage = new ec2.AmazonLinuxImage({generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2});
+        
+    // Create autoscaling group 
+    var subnets = vpc.selectSubnets({subnetType: ec2.SubnetType.PRIVATE});
     const asg = new autoscaling.AutoScalingGroup(this, 'ASG', {
       vpc: vpc,
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
@@ -94,16 +94,26 @@ class GuestbookEc2Stack extends cdk.Stack {
       machineImage: machineImage,
       role: role
     });
-
     asg.addSecurityGroup(clientSecurityGroup);
   
     listener.addTargets('ApplicationFleet', {
       port: 8080,
       targets: [asg]
     });
-    
+
+    // Output load balancer dns 
+    new cdk.CfnOutput(this, 'LoadBalancerDNS', {
+      exportName: 'LoadBalancerDNS',
+      value: lb.loadBalancerDnsName,
+      description: 'DNS of the load balancer'
+    });
+
     /**
     // If you want to deploy a single instance (without ALB or Autoscaling group) : 
+    
+    // Make sure to place that instance in a public subnet
+    subnets = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC});
+
     var ec2Instance = new ec2.Instance(this, 'Instance', {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       vpc: vpc,
