@@ -46,5 +46,5 @@ The same code is used to build dev and production environment. You can pass the 
 `cdk deploy guestbook-dev|prod-rds -c env=dev`
 
 #### Deploy application
-cdk deploy guestbook-dev|prod-ec2 -c env=dev
+`cdk deploy guestbook-dev|prod-ec2 -c env=dev`
 
