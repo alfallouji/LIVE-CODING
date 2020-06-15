@@ -20,31 +20,37 @@ Copy file conf/config.json.sample to `conf/config.prod.json` (for production env
 The same code is used to build dev and production environment. You can pass the `env` parameter as a context to select the desired environment.
 
 ### Production environment
-`cdk deploy -c env=prod`
+`cdk deploy {stackName} -c env=prod`
 
-`cdk synth -c env=prod`
+`cdk synth {stackName} -c env=prod`
 
 ### Development environment
 
-`cdk deploy -c env=dev`
+`cdk deploy {stackName} -c env=dev`
 
-`cdk synth -c env=dev`
+`cdk synth {stackName} -c env=dev`
+
+### To list stacks
+
+`cdk list -c env=dev|prod`
 
 
 ### How to deploy all the stacks into a new account
 
-#### Bootstrap using your account id, region and select adequate environment (dev or prod):
+Follow this order : 
+
+#### 1. Bootstrap using your account id, region and select adequate environment (dev or prod):
 `cdk bootstrap aws://1234567890/eu-west-1 -c env=dev|prod`
 
-#### Deploy the vpc
+#### 2. Deploy the vpc
 `cdk deploy guestbook-dev|prod-vpc -c env=dev`
 
-#### Deploy common resources (e.g. IAM role)
+#### 3. Deploy common resources (e.g. IAM role)
 `cdk deploy guestbook-dev|prod-common -c env=dev`
 
-#### Deploy database
+#### 4. Deploy database
 `cdk deploy guestbook-dev|prod-rds -c env=dev`
 
-#### Deploy application
+#### 5. Deploy application
 `cdk deploy guestbook-dev|prod-ec2 -c env=dev`
 
