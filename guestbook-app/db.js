@@ -4,9 +4,9 @@ var mysql = require('mysql');
 // Load the AWS SDK
 var AWS = require('aws-sdk');
 
-// @todo - move to config file region & secretName
-var region = process.env.GUESTBOOK_REGION; //"eu-central-1";
-var secretName = process.env.GUESTBOOK_SECRET_NAME; //"guestbook-dev-master-credentials";
+// Retrieve region and secret name from environment 
+var region = process.env.GUESTBOOK_REGION || "eu-central-1";
+var secretName = process.env.GUESTBOOK_SECRET_NAME || "guestbook-dev-master-credentials";
 
 var secret = null;
 var decodedBinarySecret = null;
