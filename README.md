@@ -118,3 +118,12 @@ Durée : 60 minutes
 Video : [Twitch](https://www.twitch.tv/videos/641191131)
 
 Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E05.md
+
+
+### A venir - Jeudi 18 Juin 2020: S01E06 - Automatisons Automatisons
+
+Jeudi 18 Juin 2020 - 18:00 GMT+1
+
+Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
+
+
