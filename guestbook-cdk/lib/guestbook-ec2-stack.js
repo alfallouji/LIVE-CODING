@@ -27,7 +27,7 @@ class GuestbookEc2Stack extends cdk.Stack {
   async executeStack(scope, id, props) {    
     var vpc = props.vpc.current;
     
-    // Load the existing app security group 
+    // Load/Fetch the existing app security group 
     var lookup = new utils.Lookup(props);
     var clientSecurityGroup = await lookup.getAppSecurityGroup(this);
   
@@ -39,7 +39,7 @@ class GuestbookEc2Stack extends cdk.Stack {
       'Allow inbound HTTP port 80 from anywhere'
     );
 
-    // role = iam.Role.fromRoleArn(this, props.instance.rolename, props.instance.existingRoleArn);
+    // Create role for the EC2 instance
     const role = new iam.Role(this, props.instance.rolename, {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com')
     });
@@ -49,7 +49,7 @@ class GuestbookEc2Stack extends cdk.Stack {
     role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName(props.iam.ssmManagedPolicyName));
     
     /**
-    // If you want to select a specific AMI 
+    // If you want to select a specific AMI, you can do the following :
     const machineImage = ec2.MachineImage.lookup({
       name: props.instance.machineImage,
     });
@@ -98,7 +98,7 @@ class GuestbookEc2Stack extends cdk.Stack {
     });
     
     /**
-    // Deploy a single instance
+    // If you want to deploy a single instance (without ALB or Autoscaling group) : 
     var ec2Instance = new ec2.Instance(this, 'Instance', {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       vpc: vpc,

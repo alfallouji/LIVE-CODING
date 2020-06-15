@@ -1,17 +1,22 @@
-var mysql = require('mysql');
-
-exports.main =  async function(event, context) {
+exports.main = function(event, context, callback) {
     // Use this code snippet in your app.
     // If you need more information about configurations or implementing the sample code, visit the AWS docs:
     // https://aws.amazon.com/developers/getting-started/nodejs/
     
     // Load the AWS SDK
-    const region = Regions.fromName(System.getenv("AWS_REGION"));
     var AWS = require('aws-sdk');
-    var secretName = "guestbook-dev-credentials",
+    const region = process.env.AWS_REGION;
+    console.log('starting on ' + region);
+    
+    var mysql = require('mysql');
+    var cfnresponse = require('cfn-response');
+    
+    // @todo: move this as as env variable
+    var secretName = "guestbook-dev-master-credentials";
+    
     var secret = null;
     var decodedBinarySecret = null;
-    
+
     // Create a Secrets Manager client
     var client = new AWS.SecretsManager({
         region: region
@@ -55,32 +60,42 @@ exports.main =  async function(event, context) {
             }
         }
         
+        console.log('secret', secret);
+        var secretJson = JSON.parse(secret);
+        
         var mysql = require('mysql');
         var con = mysql.createConnection({
-          host: secret.host,
-          user: secret.username,
-          password: secret.password,
-          database: secret.database
+          host: secretJson.host,
+          user: secretJson.username,
+          password: secretJson.password,
+          database: 'mysql',
           multipleStatements: true
         });
         
         con.connect(function(err) {
-          if (err) throw err;
-          con.query("CREATE DATABASE IF NOT EXISTS " + secret.database +"; CREATE TABLE IF NOT EXISTS " + secret.database + ".guestbook ( \
+          if (err) {
+              console.log('Error occured while connecting', err);
+              cfnresponse.send(event, context, cfnresponse.FAILED, {"Data": "notOk"});
+              callback(err);
+          }
+          
+          // @todo : Move sql outside
+          con.query("CREATE DATABASE IF NOT EXISTS " + secretJson.database +"; CREATE TABLE IF NOT EXISTS " + secretJson.database + ".guestbook ( \
   `id` INT NOT NULL AUTO_INCREMENT, \
   `name` VARCHAR(32) NOT NULL, \
   `message` TEXT NULL, \
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, \
-  PRIMARY KEY (`id`));", function (err, result, fields) {
-            if (err) throw err;
-            
-            console.log(result);
+  PRIMARY KEY (`id`)); SHOW DATABASES;", function (err, result, fields) {
+            if (err) {
+                console.log('Error - couldnt create schema');
+                cfnresponse.send(event, context, cfnresponse.FAILED, {"Data": "notOk"});
+                callback(err);
+            }
+            console.log('ok', result);
             con.end();
+            cfnresponse.send(event, context, cfnresponse.SUCCESS, {"Data": "ok"});
+            callback(null);
           });
         });  
-
-      return context.logStreamName        
     });
 }
-
-exports.main({}, {});

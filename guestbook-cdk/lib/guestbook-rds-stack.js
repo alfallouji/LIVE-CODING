@@ -2,7 +2,6 @@ const cdk = require('@aws-cdk/core');
 const ec2 = require('@aws-cdk/aws-ec2');
 const secretsManager = require('@aws-cdk/aws-secretsmanager');
 const rds = require('@aws-cdk/aws-rds');
-const uuid = require('uuid');
 const utils = require('../utils/lookup.js');
 const cfn = require('@aws-cdk/aws-cloudformation');
 const lambda = require('@aws-cdk/aws-lambda');
@@ -35,7 +34,7 @@ class GuestbookRdsStack extends cdk.Stack {
     const isDev = props.environmentType !== "production";
     
     // Generate an initial password for the master account
-    const initialMasterPassword = uuid.v4();
+    const initialMasterPassword = Math.random().toString(36).substring(2);
 
     // Load the existing app security group 
     var lookup = new utils.Lookup(props);
@@ -104,6 +103,7 @@ class GuestbookRdsStack extends cdk.Stack {
       securityGroups: [dbSecurityGroup]
     });
 
+    // Add secret rotation for password
     new secretsManager.SecretRotation(this, 'SecretMasterRotation', {
       application: secretsManager.SecretRotationApplication.MYSQL_ROTATION_SINGLE_USER,
       secret: databaseCredentialsSecret,
@@ -113,19 +113,21 @@ class GuestbookRdsStack extends cdk.Stack {
       securityGroup: appSecurityGroup
     });
     
-    
     // Call custom resource to create the db schema
     const role = new iam.Role(this, props.lambda.rolename, {
       assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com')
     });
-    
-    // allow lambda  to communicate with secrets manager & ssm (for debug purposes if needed)
+
+    // allow lambda  to communicate with secrets manager
     role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName(props.lambda.roleManagedPolicyName));
-      
+    role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("service-role/AWSLambdaBasicExecutionRole"));
+    role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("service-role/AWSLambdaVPCAccessExecutionRole"));
+
     var lambdaFunction = new lambda.SingletonFunction(this, 'guestbookLambda', {
         uuid: 'lambda-database-setup-001',
         code: lambda.Code.asset('lib/custom-resource/database-setup'),
         handler: 'index.main',
+        description: 'Initial database schema creation',
         timeout: cdk.Duration.seconds(300),
         runtime: lambda.Runtime.NODEJS_12_X,
         vpc: props.vpc.current,
@@ -134,13 +136,12 @@ class GuestbookRdsStack extends cdk.Stack {
         vpcSubnets: vpc.selectSubnets({subnetType: ec2.SubnetType.PRIVATE})
     });
     
-    /**
+    // Create the custom resource with the Lambda
     var customProvider = cfn.CustomResourceProvider.lambda(lambdaFunction);
     const resource = new cfn.CustomResource(this, 'Resource', {
       provider: customProvider,
       properties: {}
     });
-    */
     
     this.rdsCluster = rdsCluster;
   }

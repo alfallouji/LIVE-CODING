@@ -10,6 +10,17 @@ class GuestbookVpcStack extends cdk.Stack {
    */
   constructor(scope, id, props) {
     super(scope, id, props);
+    this.executeStack(scope, id, props);
+  }
+  
+  /**
+   * Async function containing all the logic
+   * 
+   * @param {cdk.Construct} scope
+   * @param {string} id
+   * @param {cdk.StackProps=} props
+   */
+  async executeStack(scope, id, props) {        
     this.vpc = null;
 
     // Create a VPC
