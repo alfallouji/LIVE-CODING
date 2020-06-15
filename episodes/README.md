@@ -59,7 +59,16 @@ Video : [Twitch](https://www.twitch.tv/videos/634488159)
 Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E03.md
 
 
-### S01E04 - RDS fait connaissance avec CDK - Part 1
+## S01E04 - RDS fait connaissance avec CDK - Part 1
+
+<p align="center">
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e04-a.png" />
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e04-b.png" />
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e04-c.png" />
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e04-d.png" /></p>
+  
+  
+***"La voix" aimerait que l'on automatise le déploiement de la base de données***
 
 Jeudi 4 Juin 2020 - 18:00 GMT+1
 
@@ -67,11 +76,33 @@ Durée : 62 minutes
 
 Video : [Twitch](https://www.twitch.tv/videos/647898443)
 
+Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E04.md
 
-### S01E05 - RDS fait connaissance avec CDK - Part 2
+
+## S01E05 - RDS fait connaissance avec CDK - Part 2
+
+***Suite et fin de l'épisode précédent***
+
+<p align="center">
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e05-a.png" />
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e05-b.png" />
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e05-c.png" />
+  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e05-d.png" /></p>
+  
+  
+Suite et fin de l'épisode 
 
 Jeudi 11 Juin 2020 - 18:00 GMT+1
 
 Durée : 60 minutes
 
 Video : [Twitch](https://www.twitch.tv/videos/641191131)
+
+Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E05.md
+
+
+## A venir - Jeudi 18 Juin 2020: S01E06 - Automatisons Automatisons
+
+Jeudi 18 Juin 2020 - 18:00 GMT+1
+
+Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
