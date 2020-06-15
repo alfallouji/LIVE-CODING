@@ -1,11 +1,12 @@
 {
     "description": "Configuration file used for the dev and prod environments. Create a copy named config.dev.json and config.prod.json",
+    "environmentType": "dev|prod",
     "env": {
         "account": "1234567890",
         "region": "eu-central-1"
     },
     "vpc": {
-        "name": "guestbook-{dev|prod}-vpc",
+        "name": "vpc",
         "maxAzs": 3,
         "natGateways": 1
     },
@@ -29,6 +30,10 @@
         "rolename": "guestbook-app-role",
         "existingRoleArn": "arn:aws:iam::1234567890:role/guestbook-app-role"
     },
+    "lambda": {
+        "rolename": "guestbook-db-setup-role",
+        "roleManagedPolicyName": "SecretsManagerReadWrite"
+    },    
     "iam": {
         "ssmRoleName": "ssm-role-ec2",
         "ssmExistingRoleArn": "arn:aws:iam::1234567890:role/ssm-role-ec2",
