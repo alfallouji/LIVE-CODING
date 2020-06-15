@@ -59,10 +59,10 @@ class GuestbookEc2Stack extends cdk.Stack {
     const secretName = `${props.rds.serviceName}-${props.environmentType}-master-credentials`;
     var userdata = ec2.UserData.forLinux();
     userdata.addCommands(
-      'sudo curl https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/guestbook-app/setup/userdata.sh > /tmp/userdata.sh', 
-      'sudo sh /tmp/userdata.sh',
       `sudo echo "GUESTBOOK_SECRET_NAME=${secretName}" >> /opt/guestbook.env`,
-      `sudo echo "GUESTBOOK_REGION=${props.env.region}" >> /opt/guestbook.env`
+      `sudo echo "GUESTBOOK_REGION=${props.env.region}" >> /opt/guestbook.env`,
+      'sudo curl https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/guestbook-app/setup/userdata.sh > /tmp/userdata.sh', 
+      'sudo sh /tmp/userdata.sh'
     );
     
     // Create load balancer mapped to 8080

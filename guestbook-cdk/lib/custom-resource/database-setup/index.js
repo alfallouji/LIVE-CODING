@@ -3,6 +3,13 @@ exports.main = function(event, context, callback) {
     // If you need more information about configurations or implementing the sample code, visit the AWS docs:
     // https://aws.amazon.com/developers/getting-started/nodejs/
     
+    console.log(event);
+    
+    // Only execute following code on create (do nothing in other cases)
+    if (event.RequestType != 'Create') {
+        callback(null);
+    }
+    
     // Load the AWS SDK
     var AWS = require('aws-sdk');
     const region = process.env.AWS_REGION;
