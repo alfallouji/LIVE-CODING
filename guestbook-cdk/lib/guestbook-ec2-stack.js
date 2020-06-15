@@ -60,9 +60,14 @@ class GuestbookEc2Stack extends cdk.Stack {
     
     var subnets = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC});
     var userdata = ec2.UserData.forLinux();
+    
+    const secretName = `${props.rds.serviceName}-${props.environmentType}-master-credentials`;
+
     userdata.addCommands(
       'sudo curl https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/guestbook-app/setup/userdata.sh > /tmp/userdata.sh', 
-      'sudo sh /tmp/userdata.sh'
+      'sudo sh /tmp/userdata.sh',
+      `sudo echo export GUESTBOOK_SECRET_NAME="${secretName}" >> /etc/profile`,
+      `sudo echo export GUESTBOOK_REGION="${props.env.region}" >> /etc/profile`
     );
     
     const lb = new elbv2.ApplicationLoadBalancer(this, 'loadbalancer', {
@@ -87,7 +92,7 @@ class GuestbookEc2Stack extends cdk.Stack {
       userData: userdata,
       instanceName: props.instance.name + '-' + props.environmentType,
       machineImage: machineImage,
-      role: role,
+      role: role
     });
 
     asg.addSecurityGroup(clientSecurityGroup);

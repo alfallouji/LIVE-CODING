@@ -2,12 +2,14 @@ var cfg = require('nconf');
 var mysql = require('mysql');
 
 // Load the AWS SDK
-var AWS = require('aws-sdk'),
+var AWS = require('aws-sdk');
+
 // @todo - move to config file region & secretName
-region = "eu-central-1",
-secretName = "guestbook-dev-master-credentials",
-secret,
-decodedBinarySecret;
+var region = process.env.GUESTBOOK_REGION; //"eu-central-1";
+var secretName = process.env.GUESTBOOK_SECRET_NAME; //"guestbook-dev-master-credentials";
+
+var secret = null;
+var decodedBinarySecret = null;
 
 // Create a Secrets Manager client
 var client = new AWS.SecretsManager({
