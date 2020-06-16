@@ -38,7 +38,13 @@ The same code is used to build dev and production environment. You can pass the 
 Follow this order : 
 
 #### 1. Bootstrap using your account id, region and select adequate environment (dev or prod):
-`cdk bootstrap aws://1234567890/eu-west-1 -c env=dev|prod`
+`cdk bootstrap aws://{account_id}/{region} -c env=dev|prod`
+
+Example:
+
+To bootstrap the dev environment on eu-central-1 :
+
+`cdk bootstrap aws://01234567890/eu-central-1 -c env=dev`
 
 #### 2. Deploy the vpc
 `cdk deploy guestbook-dev|prod-vpc -c env=dev`
