@@ -58,3 +58,21 @@ To bootstrap the dev environment on eu-central-1 :
 #### 5. Deploy application
 `cdk deploy guestbook-dev|prod-ec2 -c env=dev`
 
+### CDK Stacks
+The same stack code can be used to deploy into a dev and a production environment. The `conf/config.dev.json` and `conf/config.prod.json` files allows slight customization on 
+
+#### guestbook-{dev|prod}-vpc
+This will deploy a vpc with 3 subnetsd on each AZ (public, private and isolated), an internet gateway, a NAT Gateway along with all the adequate routes. The subnets definition is the following :
+
+- public subnet : full access to the internet, this is for public facing resources (e.g. a load balancer)
+- private subnet : only outbound access to the internet via the NAT gateway (e.g. to download external packages), this is for application server for example
+- isolated subnet : no access to the internet at all, this is for a database (rds) for example
+
+#### guestbook-{dev|prod}-common
+This will deploy some common resources such as role, that are used by other stacks.
+
+#### guestbook-{dev|prod}-ec2
+This will deploy an autoscaling group, with a load balancer and ec2 instances. It will bootstrap the ec2 instance (deploy and configure the guestbook app) via a userdata script. 
+
+#### guestbook-{dev|prod}-rds
+This will deploy an rds database (aurora serverless), it will enable secret rotation using AWS Secrets Manager and it will also deploy the initial schema via a custom resource.
