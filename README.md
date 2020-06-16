@@ -16,6 +16,31 @@ Le code de déploiement des resources (via CDK) est disponible dans le répertoi
 
 Les descriptions des différents épisodes sont disponibles dans le répertoire [episodes/](https://github.com/alfallouji/LIVE-CODING/tree/master/episodes)
 
+### Comment deployer la solution?
+
+Nous utilisons [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) pour automatiser le déploiement. Voici les étapes que vous pouvez suivre pour rapidement déployer la solution : 
+
+1. Avoir un environnement pour déployer le code (vous pouvez utilisez cloud9 ou votre laptop). Nodejs est nécessaire.
+
+2. Cloner le code 
+
+`git clone https://github.com/alfallouji/LIVE-CODING.git`
+
+`cd guestbook-cdk`
+
+3. Copier et configurer le fichier de config pour prod et dev
+
+`copy conf/config.json.sample conf/config.dev.json`
+`copy conf/config.json.sample conf/config.production.json`
+
+4. Bootstrap cdk (ca va créer un bucket S3 pour stocker certains assets si besoin)
+
+`cdk bootstrap aws://01234567890/eu-central-1 -c env=dev`
+
+5. Déployer la solution au complet
+
+`cdk deploy guestbook* -c env=dev`
+
 
 ## Episodes 
 
