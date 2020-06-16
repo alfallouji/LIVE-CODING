@@ -55,9 +55,11 @@ if (vpcStack) {
 
 props.stackName = 'guestbook-' + prefix + '-common';
 var commonStack = new GuestbookCommonStack(app, props.stackName, props);
+commonStack.addDependency(vpcStack);
 
 props.stackName = 'guestbook-' + prefix + '-rds';
 var rdsStack = new GuestbookRdsStack(app, props.stackName, props);
+rdsStack.addDependency(commonStack);
 if (rdsStack) {
     props.rds.current = rdsStack.getRdsCluster();
     props.rds.stack = rdsStack;
@@ -67,3 +69,5 @@ if (rdsStack) {
 
 props.stackName = 'guestbook-' + prefix + '-ec2';
 var ec2Stack = new GuestbookEc2Stack(app, props.stackName, props);
+ec2Stack.addDependency(rdsStack);
+
