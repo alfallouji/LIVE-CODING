@@ -40,7 +40,7 @@ Follow this order :
 #### 1. Bootstrap using your account id, region and select adequate environment (dev or prod):
 `cdk bootstrap aws://{account_id}/{region} -c env=dev|prod`
 
-Example:
+##### Example:
 
 To bootstrap the dev environment on eu-central-1 :
 
@@ -48,6 +48,15 @@ To bootstrap the dev environment on eu-central-1 :
 
 #### 2. Deploy the vpc
 `cdk deploy guestbook-dev|prod-vpc -c env=dev`
+
+##### Example:
+This will deploy the vpc stack for a prod environment:
+
+`cdk deploy guestbook-prod-vpc -c env=prod`
+
+This will deploy the vpc stack for a dev environment in the us-east-1 region (it overrides the region configured in the config file):
+
+`cdk deploy guestbook-dev-vpc -c env=dev -c region=us-east-1`
 
 #### 3. Deploy common resources (e.g. IAM role)
 `cdk deploy guestbook-dev|prod-common -c env=dev`
