@@ -7,7 +7,8 @@ exports.main = function(event, context, callback) {
     
     // Only execute following code on create (do nothing in other cases)
     if (event.RequestType != 'Create') {
-        callback(null);
+        cfnresponse.send(event, context, cfnresponse.SUCCESS, {"Data": "ok"});        
+        return;
     }
     
     // Load the AWS SDK
