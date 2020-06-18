@@ -78,7 +78,7 @@ exports.main = function(event, context, callback) {
           if (err) {
               console.log('Error occured while connecting', err);
               cfnresponse.send(event, context, cfnresponse.FAILED, {"Data": "notOk"});
-              callback(err);
+              return;
           }
           
           // @todo : Move sql outside
@@ -97,6 +97,7 @@ exports.main = function(event, context, callback) {
             con.end();
             cfnresponse.send(event, context, cfnresponse.SUCCESS, {"Data": "ok"});
             callback(null);
+            return;
           });
         });  
     });
