@@ -1,16 +1,4 @@
-exports.main = function(event, context, callback) {
-    // Use this code snippet in your app.
-    // If you need more information about configurations or implementing the sample code, visit the AWS docs:
-    // https://aws.amazon.com/developers/getting-started/nodejs/
-    
-    console.log(event);
-    
-    // Only execute following code on create (do nothing in other cases)
-    if (event.RequestType != 'Create') {
-        cfnresponse.send(event, context, cfnresponse.SUCCESS, {"Data": "ok"});        
-        return;
-    }
-    
+exports.main = function(event, context, callback) {           
     // Load the AWS SDK
     var AWS = require('aws-sdk');
     const region = process.env.AWS_REGION;
@@ -20,6 +8,13 @@ exports.main = function(event, context, callback) {
     var decodedBinarySecret = null;
 
     console.log('Starting Lambda using region: ' + region);
+    console.log('Event received', event);
+    
+    // Only execute following code on create (do nothing in other cases)
+    if (event.RequestType != 'Create') {
+        cfnresponse.send(event, context, cfnresponse.SUCCESS, {"Data": "ok"});        
+        return;
+    }
     
     // Create a Secrets Manager client
     var client = new AWS.SecretsManager({
@@ -90,13 +85,12 @@ exports.main = function(event, context, callback) {
   PRIMARY KEY (`id`)); SHOW DATABASES;", function (err, result, fields) {
             if (err) {
                 console.log('Error - couldnt create schema', err);
-                cfnresponse.send(event, context, cfnresponse.FAILED, {"Data": "notOk"});
-                callback(err);
+                cfnresponse.send(event, context, cfnresponse.FAILED, {"Data": "notOk"});                
+                return;
             }
             console.log('success', result);
             con.end();
-            cfnresponse.send(event, context, cfnresponse.SUCCESS, {"Data": "ok"});
-            callback(null);
+            cfnresponse.send(event, context, cfnresponse.SUCCESS, {"Data": "ok"});            
             return;
           });
         });  
