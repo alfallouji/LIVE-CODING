@@ -1,13 +1,8 @@
 # Install GuestBook systemd service
 
-Ensure setup/start.sh has execution permissions
-```
-    cd guestbook-app/setup
-    chmod +x start.sh
-```
 
 ```
-    sudo cp guestbook.service /etc/systemd/system/
+    sudo cp setup/guestbook.service /etc/systemd/system/
     sudo systemctl daemon-reload
     sudo systemctl enable guestbook.service
     sudo systemctl start guestbook
@@ -16,7 +11,7 @@ Ensure setup/start.sh has execution permissions
 Read logs from the service
 
 ```
-journalctl -u guestbook
+    journalctl -u guestbook
 ```
 
 ## Change the application working directory

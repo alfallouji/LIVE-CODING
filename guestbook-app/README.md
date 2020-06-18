@@ -44,9 +44,6 @@ This code mainly comes from this repository https://github.com/ysl/guestbook - w
         $ sudo systemctl restart nginx  
   
 ## Install guestbook as a systemd service
- * Set execution permission
-         
-        $ chmod +x setup/start.sh
 
  * Add service to systemd (depending on where you have installed the app, you may have to edit paths of the guestbook.service before)
  
