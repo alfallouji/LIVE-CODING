@@ -24,27 +24,27 @@ sudo yum install -y git
 
 # Deploy code
 cd /opt
-sudo mkdir dev
-cd dev/
+sudo mkdir guestbook
+cd guestbook/
 sudo git clone https://github.com/alfallouji/LIVE-CODING.git
 
 # Copy config file
-sudo cp /opt/dev/LIVE-CODING/guestbook-app/conf/guestbook.json.default /opt/dev/LIVE-CODING/guestbook-app/conf/guestbook.json
+sudo cp /opt/guestbook/LIVE-CODING/guestbook-app/conf/guestbook.json.default /opt/guestbook/LIVE-CODING/guestbook-app/conf/guestbook.json
 
 # Install npm packages
-sudo chown ec2-user:ec2-user /opt/dev/ -R
-cd /opt/dev/LIVE-CODING/guestbook-app/
+sudo chown ec2-user:ec2-user /opt/guestbook/ -R
+cd /opt/guestbook/LIVE-CODING/guestbook-app/
 npm install
 
-chmod +x /opt/dev/LIVE-CODING/guestbook-app/setup/start.sh
-sudo cp /opt/dev/LIVE-CODING/guestbook-app/setup/guestbook.service /etc/systemd/system/
+chmod +x /opt/guestbook/LIVE-CODING/guestbook-app/setup/start.sh
+sudo cp /opt/guestbook/LIVE-CODING/guestbook-app/setup/guestbook.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable guestbook.service
 sudo systemctl start guestbook
 
 sudo amazon-linux-extras install nginx1.12 -y
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak ## backup
-sudo cp /opt/dev/LIVE-CODING/guestbook-app/setup/nginx.conf /etc/nginx/nginx.conf
+sudo cp /opt/guestbook/LIVE-CODING/guestbook-app/setup/nginx.conf /etc/nginx/nginx.conf
 
 # Start the service
 sudo systemctl enable nginx
