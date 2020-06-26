@@ -145,7 +145,7 @@ Video : [Twitch](https://www.twitch.tv/videos/641191131)
 Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E05.md
 
 
-### A venir - Jeudi 18 Juin 2020: S01E06 - Automatisons Automatisons
+### S01E06 - Load balancers et autoscaling
 
 Jeudi 18 Juin 2020 - 18:00 GMT+1
 
