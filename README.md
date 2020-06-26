@@ -1,5 +1,5 @@
 
-<p align="center"><img src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/cestlavie.jpg" /></p>
+<p align="center"><img src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/cestlavie.jpg" /></p>
 
 # LIVE CODING
 Github Repository pour les scéances de live coding par Seb & Bashar
