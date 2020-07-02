@@ -1,5 +1,5 @@
 
-<p align="center"><img src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/cestlavie.jpg" /></p>
+<p align="center"><img src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/cestlavie.jpg" /></p>
 
 # LIVE CODING
 Github Repository pour les scéances de live coding par Seb & Bashar
@@ -47,10 +47,10 @@ Nous utilisons [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) pour aut
 ### S01E01 - Le début d'une aventure
 
 <p align="center" style="background-color:black; padding: 10px;">
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e01-a.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e01-b.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e01-c.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e01-d.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e01-a.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e01-b.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e01-c.png" />  
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e01-d.png" />    
 </p>
 
 ***Chaque histoire a un début, au menu pour cet épisode : un message mystérieux, un nouveau workload à déployer et peu de temps.***
@@ -65,12 +65,12 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 ### S01E02 - Une question de réseau
 
-<p align="center">
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e02-a.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e02-b.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e02-c.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e02-d.png" /></p>
-
+<p align="center" style="background-color:black; padding: 10px;">
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e02-a.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e02-b.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e02-c.png" />  
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e02-d.png" />    
+</p>
 ***"La voix" est contente de notre prestation précédente, mais nous invite à penser au futur et revoir les fondations au niveau réseau. Il est temps de concevoir une topologie réseau et d'automatiser le déploiement du nouveau VPC.***
 
 Jeudi 14 Mai 2020 - 18:00 GMT+1
@@ -84,12 +84,13 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 ### S01E03 - Diviser pour mieux régner
 
-<p align="center">
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e03-a.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e03-b.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e03-c.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e03-d.png" /></p>
-  
+<p align="center" style="background-color:black; padding: 10px;">
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e03-a.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e03-b.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e03-c.png" />  
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e03-d.png" />    
+</p>
+
 ***"La voix" nous demande de casser le monolithe, la première étape consiste à sortir la base de données.***
 
 Jeudi 28 Mai 2020 - 18:00 GMT+1
@@ -105,13 +106,13 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 ### S01E04 - RDS fait connaissance avec CDK - Part 1
 
-<p align="center">
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e04-a.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e04-b.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e04-c.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e04-d.png" /></p>
-  
-  
+<p align="center" style="background-color:black; padding: 10px;">
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e04-a.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e04-b.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e04-c.png" />  
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e04-d.png" />    
+</p>
+
 ***"La voix" aimerait que l'on automatise le déploiement de la base de données***
 
 Jeudi 4 Juin 2020 - 18:00 GMT+1
@@ -127,13 +128,13 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 ***Suite et fin de l'épisode précédent***
 
-<p align="center">
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e05-a.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e05-b.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e05-c.png" />
-  <img witdh="80" height="80" src="https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/episodes/assets/s01e05-d.png" /></p>
-  
-  
+<p align="center" style="background-color:black; padding: 10px;">
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e05-a.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e05-b.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e05-c.png" />  
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e05-d.png" />    
+</p>
+
 Suite et fin de l'épisode 
 
 Jeudi 11 Juin 2020 - 18:00 GMT+1
@@ -145,9 +146,16 @@ Video : [Twitch](https://www.twitch.tv/videos/641191131)
 Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E05.md
 
 
-### A venir - Jeudi 18 Juin 2020: S01E06 - Automatisons Automatisons
+### S01E06 - Load balancer et autoscaling
 
-Jeudi 18 Juin 2020 - 18:00 GMT+1
+Jeudi 25 Juin 2020 - 18:00 GMT+1
+
+Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
+
+
+### S01E07 - Automatisation via CDK de la création du Load balancer et autoscaling
+
+Jeudi 2 Juillet 2020 - 18:00 GMT+1
 
 Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
 
