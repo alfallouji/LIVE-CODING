@@ -92,7 +92,8 @@ class GuestbookEc2Stack extends cdk.Stack {
       userData: userdata,
       instanceName: props.instance.name + '-' + props.environmentType,
       machineImage: machineImage,
-      role: role
+      role: role,
+      healthCheck: autoscaling.HealthCheck.elb({grace: cdk.Duration.seconds(60)})
     });
     asg.addSecurityGroup(clientSecurityGroup);
   
