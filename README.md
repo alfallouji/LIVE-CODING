@@ -146,9 +146,16 @@ Video : [Twitch](https://www.twitch.tv/videos/641191131)
 Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E05.md
 
 
-### S01E06 - Load balancers et autoscaling
+### S01E06 - Load balancer et autoscaling
 
-Jeudi 18 Juin 2020 - 18:00 GMT+1
+Jeudi 25 Juin 2020 - 18:00 GMT+1
+
+Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
+
+
+### S01E07 - Automatisation via CDK de la création du Load balancer et autoscaling
+
+Jeudi 2 Juillet 2020 - 18:00 GMT+1
 
 Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
 
