@@ -1,56 +1,96 @@
 #!/bin/bash
 
-echo "Deploying app"
+### TODO: Place this script on S3 
+# Change the userdata script to download this script from S3 (aws cli or wget)
+# Or use curl https://raw.githubusercontent.com/alfallouji/LIVE-CODING/master/guestbook-app/setup/userdata.sh | bash
+# Arguments:
+# - Transmit the REGION (Default: eu-west-1) with Cloudformation/CDK as argument 1 of the script
+# Example:
+# /bin/bash userdata.sh eu-west-1
 
-# Setup packages and apps
-sudo yum update -y
+DEFAULT_REGION=eu-west-1
+REGION=${1:-$DEFAULT_REGION}
 
-cat > /tmp/subscript.sh << EOF
-# Install node
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-echo 'export NVM_DIR="/home/ec2-user/.nvm"' >> /home/ec2-user/.bashrc
-echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> /home/ec2-user/.bashrc
+PROJECT_REPOSITORY=https://github.com/alfallouji/LIVE-CODING.git
 
-# Dot source the files to ensure that variables are available within the current shell
-. /home/ec2-user/.nvm/nvm.sh
-. /home/ec2-user/.bashrc
-nvm install node
 
-currentNode="\$(nvm which current)"
-sudo ln -s \$currentNode /usr/bin/node
+## Redirect journalctl logs to syslog
+sed -i 's/#ForwardToSyslog=yes/ForwardToSyslog=yes/g' /etc/systemd/journald.conf
+systemctl restart systemd-journald
 
-# Setup db
-sudo yum install -y git
 
-# Deploy code
-cd /opt
-sudo mkdir guestbook
-cd guestbook/
-sudo git clone https://github.com/alfallouji/LIVE-CODING.git
+## Create a rsyslog rule for guestbook app
+echo ":syslogtag, startswith, \"guestbook\" /var/log/guestbook.log
+& stop" > /etc/rsyslog.d/99-guestbook.conf
 
-# Copy config file
-sudo cp /opt/guestbook/LIVE-CODING/guestbook-app/conf/guestbook.json.default /opt/guestbook/LIVE-CODING/guestbook-app/conf/guestbook.json
+systemctl restart rsyslog
 
-# Install npm packages
-sudo chown ec2-user:ec2-user /opt/guestbook/ -R
-cd /opt/guestbook/LIVE-CODING/guestbook-app/
-npm install
+## Install CloudWatch Agent
+AWSLOGS_BIN=/usr/sbin/awslogsd
+if [ ! -f ${AWSLOGS_BIN} ]; then
+        yum -y install awslogs
+fi
+## Install AWS Config file
+echo "[general]
+state_file = /var/lib/awslogs/agent-state
 
-chmod +x /opt/guestbook/LIVE-CODING/guestbook-app/setup/start.sh
-sudo cp /opt/guestbook/LIVE-CODING/guestbook-app/setup/guestbook.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable guestbook.service
-sudo systemctl start guestbook
+[/var/log/cloud-init-output.log]
+file = /var/log/cloud-init-output.log
+buffer_duration = 5000
+log_group_name = guestbook-instance-var-log-cloud-init-output
+log_stream_name = {instance_id}
+datetime_format = %b %d %H:%M:%S
+initial_position = start_of_file
 
-sudo amazon-linux-extras install nginx1.12 -y
-sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak ## backup
-sudo cp /opt/guestbook/LIVE-CODING/guestbook-app/setup/nginx.conf /etc/nginx/nginx.conf
+[/var/log/guestbook.log]
+file = /var/log/guestbook.log
+buffer_duration = 5000
+log_group_name = guestbook-app-var-log-guestbook
+log_stream_name = {instance_id}
+datetime_format = %b %d %H:%M:%S
+initial_position = start_of_file
+" > /etc/awslogs/awslogs.conf
 
-# Start the service
-sudo systemctl enable nginx
-sudo systemctl restart nginx
+## Change Cloudwatch logs region:
+sed -i "s/region = us-east-1/region = ${REGION}/g" /etc/awslogs/awscli.conf
 
-EOF
+systemctl enable awslogsd
+systemctl start awslogsd
 
-chown ec2-user:ec2-user /tmp/subscript.sh && chmod a+x /tmp/subscript.sh
-sleep 1; su - ec2-user -c "/tmp/subscript.sh"
+NODE_BIN=/usr/bin/node
+GIT_BIN=/usr/bin/git
+
+if [ ! -f ${NODE_BIN} ]; then
+        ### Install NodeJS Repository
+        curl -s https://rpm.nodesource.com/setup_12.x | bash
+
+        ### Install dependencies
+        yum -y install nodejs
+fi
+
+## Install Git
+if [ ! -f ${GIT_BIN} ]; then
+        yum -y install git
+fi
+
+# Clone the project
+PROJECT_DIRECTORY=/opt/guestbook
+if [ ! -d ${PROJECT_DIRECTORY} ]; then
+        chown ec2-user:ec2-user /opt
+        su ec2-user -c "git clone ${PROJECT_REPOSITORY} ${PROJECT_DIRECTORY}"
+        su ec2-user -c "cd ${PROJECT_DIRECTORY}/guestbook-app/ && npm install"
+fi
+
+## Install the guest book service
+GUESTBOOK_SYSTEMD_SERVICE=/etc/systemd/system/guestbook.service
+
+if [ -f ${GUESTBOOK_SYSTEMD_SERVICE} ]; then
+        rm -fr ${GUESTBOOK_SYSTEMD_SERVICE}
+fi
+install --owner root --group root --mode 0644 ${PROJECT_DIRECTORY}/guestbook-app/setup/guestbook.service ${GUESTBOOK_SYSTEMD_SERVICE}
+
+
+## Activate the service at startup
+systemctl daemon-reload
+systemctl enable guestbook
+systemctl start guestbook
