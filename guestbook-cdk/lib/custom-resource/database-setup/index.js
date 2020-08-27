@@ -82,7 +82,7 @@ exports.main = function(event, context, callback) {
   `name` VARCHAR(32) NOT NULL, \
   `message` TEXT NULL, \
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, \
-  PRIMARY KEY (`id`)); SHOW DATABASES;", function (err, result, fields) {
+  PRIMARY KEY (`id`));", function (err, result, fields) {
             if (err) {
                 console.log('Error - couldnt create schema', err);
                 cfnresponse.send(event, context, cfnresponse.FAILED, {"Data": "notOk"});                
