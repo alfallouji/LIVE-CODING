@@ -163,6 +163,8 @@ Durée : 62 minutes
 
 Video : [Twitch](https://www.twitch.tv/videos/661208347)
 
+Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E06.md
+
 
 ### S01E07 - Automatisation via CDK de la création du Load balancer et autoscaling
 ***Suite et fin de l'épisode précédent***
@@ -180,5 +182,4 @@ Durée : 70 minutes
 
 Video : [Twitch](https://www.twitch.tv/videos/668152499)
 
-
-
+Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s01E07.md
