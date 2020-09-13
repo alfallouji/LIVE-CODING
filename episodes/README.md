@@ -136,8 +136,6 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
   <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e05-d.png" />    
 </p>
 
-Suite et fin de l'épisode 
-
 Jeudi 11 Juin 2020 - 18:00 GMT+1
 
 Durée : 60 minutes
