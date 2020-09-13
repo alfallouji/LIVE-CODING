@@ -71,7 +71,7 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
   <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e02-c.png" />  
   <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e02-d.png" />    
 </p>
-***"La voix" est contente de notre prestation précédente, mais nous invite à penser au futur et revoir les fondations au niveau réseau. Il est temps de concevoir une topologie réseau et d'automatiser le déploiement du nouveau VPC.***
+*** "La voix" est contente de notre prestation précédente, mais nous invite à penser au futur et revoir les fondations au niveau réseau. Il est temps de concevoir une topologie réseau et d'automatiser le déploiement du nouveau VPC.***
 
 Jeudi 14 Mai 2020 - 18:00 GMT+1
 
