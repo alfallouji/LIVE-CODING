@@ -147,14 +147,15 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 
 
 ### S01E06 - Load balancer et autoscaling
-
+ 
+***C'est le moment de rendre le workload elastique via la console!***
 Jeudi 25 Juin 2020 - 18:00 GMT+1
 
 Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
 
 
 ### S01E07 - Automatisation via CDK de la création du Load balancer et autoscaling
-
+***Suite et fin de l'épisode précédent***
 Jeudi 2 Juillet 2020 - 18:00 GMT+1
 
 Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
