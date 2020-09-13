@@ -149,15 +149,36 @@ Récapitulatif: https://github.com/alfallouji/LIVE-CODING/blob/master/episodes/s
 ### S01E06 - Load balancer et autoscaling
  
 ***C'est le moment de rendre le workload elastique via la console!***
+
+<p align="center" style="background-color:black; padding: 10px;">
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e06-a.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e06-b.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e06-c.png" />  
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e06-d.png" />    
+</p>
+
 Jeudi 25 Juin 2020 - 18:00 GMT+1
 
-Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
+Durée : 62 minutes
+
+Video : [Twitch](https://www.twitch.tv/videos/661208347)
 
 
 ### S01E07 - Automatisation via CDK de la création du Load balancer et autoscaling
 ***Suite et fin de l'épisode précédent***
+
+<p align="center" style="background-color:black; padding: 10px;">
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e07-a.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e07-b.png" />
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e07-c.png" />  
+  <img witdh="80" height="80" src="https://rawcdn.githack.com/alfallouji/LIVE-CODING/006f6002b6234ebe12488256b89a1198e8f5038d/episodes/assets/s01e07-d.png" />    
+</p>
+
 Jeudi 2 Juillet 2020 - 18:00 GMT+1
 
-Video : [Live sur Twitch](https://www.twitch.tv/sebaws)
+Durée : 70 minutes
+
+Video : [Twitch](https://www.twitch.tv/videos/668152499)
+
 
 
